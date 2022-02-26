@@ -1,4 +1,5 @@
 import React from 'react';
+import './InterviewerList.scss';
 
 export default function setInterviewer(props) {
   return (
