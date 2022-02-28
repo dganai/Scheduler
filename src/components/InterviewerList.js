@@ -6,13 +6,15 @@ export default function InterviewerList(props) {
   const { interviewers, setInterviewer, interviewer } = props;
 
   const interviewersArr = interviewers.map((interviewer) => {
-    <InterviewerListItem
-      key={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      selected={(interviewer.id = props.interviewer)}
-      setInterviewer={setInterviewer}
-    />;
+    return (
+      <InterviewerListItem
+        key={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        selected={(interviewer.id = props.interviewer)}
+        setInterviewer={setInterviewer}
+      />
+    );
   });
   return (
     <section className="interviewers">
