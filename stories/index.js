@@ -167,4 +167,13 @@ storiesOf('Appointment', module)
       onCancel={action('onCancel')}
       onSave={action('onSave')}
     />
+  ))
+  .add('Edit', () => (
+    <Form
+      student="Dina"
+      interviewer={2}
+      interviewers={interviewers}
+      onSave={action('onSave')}
+      onCancel={action('onCancel')}
+    />
   ));
