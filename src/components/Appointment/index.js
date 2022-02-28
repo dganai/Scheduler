@@ -5,7 +5,7 @@ import Show from './Show';
 import Empty from './Empty';
 
 export default function Appointment(props) {
-  const { interview, time } = props;
+  const { id, interview, time } = props;
   return (
     <article className="appointment">
       <Header time={time} />
