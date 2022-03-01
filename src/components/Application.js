@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import 'components/Application.scss';
 import DayList from './DayList';
 import Appointment from './Appointment';
@@ -43,26 +43,8 @@ const appointments = [
   },
 ];
 
-const days = [
-  {
-    id: 1,
-    name: 'Monday',
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: 'Tuesday',
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: 'Wednesday',
-    spots: 0,
-  },
-];
-
 export default function Application() {
-  const [day, setDay] = useState('Monday');
+  const [day, setDay] = useState([]);
   return (
     <main className="layout">
       <section className="sidebar">
