@@ -11,6 +11,10 @@ export default function Application() {
     appointments: {},
   });
 
+  const setDay = (day) => setState({ ...state, day });
+  const setDays = (days) => {
+    setState((prev) => ({ ...prev, days: days }));
+  };
   useEffect(() => {
     const daysURL = '/api/days';
     axios.get(daysURL).then((response) => setDays(response.data));
