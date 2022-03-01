@@ -7,10 +7,10 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  return (
-    interview && {
-      studnet: interview.student,
-      interviewer: { ...state.interviewers[interview.interviewer] },
-    }
-  );
+  if (!interview) return null;
+
+  let interviewerID = interview.interviewer;
+
+  let appointmentInterviewer = state.interviewers[interviewerID];
+  return { ...interview, interviewer: appointmentInterviewer };
 }
