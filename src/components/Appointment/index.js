@@ -4,13 +4,12 @@ import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
 import Form from './Form';
-import useVisualMode from 'components/hooks/useVisualMode';
-
-const EMPTY = 'EMPTY';
-const SHOW = 'SHOW';
-const CREATE = 'CREATE';
+import useVisualMode from 'hooks/useVisualMode';
 
 export default function Appointment(props) {
+  const EMPTY = 'EMPTY';
+  const SHOW = 'SHOW';
+  const CREATE = 'CREATE';
   const { id, interview, time, interviewers } = props;
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
   return (
