@@ -7,10 +7,18 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  if (!interview) return null;
+  return (
+    interview && {
+      student: interview.student,
+      interviewer: { ...state.interviewers[interview.interviewer] },
+    }
+  );
+}
 
-  let interviewerID = interview.interviewer;
+export function getInterviewersForDay(state, day) {
+  const findDay = state.days.find((element) => element.name === day);
 
-  let appointmentInterviewer = state.interviewers[interviewerID];
-  return { ...interview, interviewer: appointmentInterviewer };
+  return findDay
+    ? findDay.interviewers.map((id) => state.interviewers[id])
+    : [];
 }
