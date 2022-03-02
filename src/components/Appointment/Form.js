@@ -6,14 +6,24 @@ export default function Form(props) {
   const { interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(props.studnet || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  
+  const [error, setError] = useState('');
+
   const reset = () => {
     setStudent('');
     setInterviewer(null);
   };
+
   const cancel = () => {
     reset();
     onCancel();
+  };
+  const validate = () => {
+    if (student === '') {
+      setError('Student name cannot be blank');
+      return;
+    }
+    setError('');
+    onSave(student, interviewer);
   };
   return (
     <main className="appointment__card appointment__card--create">
@@ -29,6 +39,8 @@ export default function Form(props) {
             data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
+
         <InterviewerList
           value={interviewer}
           interviewers={interviewers}
@@ -40,7 +52,7 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={() => onSave(student, interviewer)}>
+          <Button confirm onClick={() => validate()}>
             Save
           </Button>
         </section>
