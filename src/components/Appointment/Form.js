@@ -6,6 +6,7 @@ export default function Form(props) {
   const { interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(props.studnet || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  
   const reset = () => {
     setStudent('');
     setInterviewer(null);
@@ -25,6 +26,7 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             value={student}
             onChange={(event) => setStudent(event.target.value)}
+            data-testid="student-name-input"
           />
         </form>
         <InterviewerList
