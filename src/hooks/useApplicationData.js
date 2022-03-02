@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Application() {
@@ -23,15 +23,17 @@ export default function Application() {
       });
   }, []);
 
-  function updateSpots(add) {
+  function updateSpots(appointments, id) {
     const dayIndex = state.days.findIndex((day) => day.name === state.day);
-    const daysCopy = [...state.days];
+    let daysCopy = [...state.days];
 
-    if (add) {
-      daysCopy[dayIndex].spots--;
+    const dayCopy = { ...state.days[dayIndex] };
+    if (appointments[id].interview) {
+      dayCopy.spots--;
     } else {
-      daysCopy[dayIndex].spots++;
+      dayCopy.spots++;
     }
+    daysCopy[dayIndex] = dayCopy;
     return daysCopy;
   }
 
