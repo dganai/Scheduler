@@ -38,6 +38,8 @@ export default function Application() {
   }
 
   function bookInterview(id, interview) {
+
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
