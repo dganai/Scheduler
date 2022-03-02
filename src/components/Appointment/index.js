@@ -36,7 +36,7 @@ export default function Appointment(props) {
   }
 
   function cancel() {
-    transition(DELETE);
+    transition(DELETE, true);
     cancelInterview(id)
       .then(() => transition(EMPTY))
       .catch((error) => transition(ERROR_DELETE, true));
@@ -58,7 +58,7 @@ export default function Appointment(props) {
         <Form
           interviewers={interviewers}
           onCancel={() => back()}
-          onSave={save}
+          onSave={(name, interviewer) => save(name, interviewer)}
         />
       )}
       {mode === EDIT && (
@@ -77,6 +77,7 @@ export default function Appointment(props) {
         <Confirm
           message="Are you sure you would like to delete?"
           onConfirm={() => cancel()}
+          onCancel={() => back()}
         />
       )}
       {mode === ERROR_SAVE && (
