@@ -3,28 +3,37 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 export default function Form(props) {
+  // destructure props
   const { interviewers, onSave, onCancel } = props;
-  const [student, setStudent] = useState(props.studnet || '');
+  // state variables
+  const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState('');
 
+  // reset student and interviewer in state
   const reset = () => {
     setStudent('');
     setInterviewer(null);
   };
 
+  // empty form, go back to to empty
   const cancel = () => {
     reset();
     onCancel();
   };
+
+  // validation for student name
   const validate = () => {
     if (student === '') {
       setError('Student name cannot be blank');
       return;
     }
+
     setError('');
     onSave(student, interviewer);
   };
+
+  // form component for booking appointment
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
