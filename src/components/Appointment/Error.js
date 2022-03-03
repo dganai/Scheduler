@@ -1,7 +1,10 @@
 import React from 'react';
 
 export default function Error(props) {
+  // destructure props
   const { message, onClose } = props;
+
+  // returns Error component when request does not save or delete
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">

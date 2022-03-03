@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function Header(props) {
+  // destructure props
   const { time } = props;
   return (
     <header className="appointment__time">

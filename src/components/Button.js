@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import './Button.scss';
 
 export default function Button(props) {
+  // destrcuture props
   const buttonClass = classNames('button', {
     'button--confirm': props.confirm,
     'button--danger': props.danger,

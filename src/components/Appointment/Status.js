@@ -1,7 +1,10 @@
 import React from 'react';
 
 export default function Status(props) {
+  // destructure prop
   const { message } = props;
+
+  // component for showing status message
   return (
     <main className="appointment__card appointment__card--status">
       <img

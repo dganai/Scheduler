@@ -2,6 +2,7 @@ import React from 'react';
 import DayListItem from './DayListItem';
 
 export default function DayList(props) {
+  // value = selected day, onChange = setDay
   const { days, value, onChange } = props;
 
   const newDaysArr = days.map((day) => (
