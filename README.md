@@ -12,11 +12,11 @@ Scheduler is a SPA that allows you to schedule, edit, and delete appointments. T
 
 !["Screenshot of error"](https://github.com/dganai/Scheduler/blob/master/docs/error.png?raw=true)
 
-### Saving an Appointment
+### Main Form
 
 !["Screenshot of main form"](https://github.com/dganai/Scheduler/blob/master/docs/main.png?raw=true)
 
-### Main Form
+### Saving an Appointment
 
 !["Screenshot of saving"](https://github.com/dganai/Scheduler/blob/master/docs/save.png?raw=true)
 
