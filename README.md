@@ -18,7 +18,7 @@ Scheduler is a SPA that allows you to schedule, edit, and delete appointments. T
 
 ### Main Form
 
-!["Screenshot of saving"](https://github.com/dganai/Scheduler/blob/master/docs/saving.png?raw=true)
+!["Screenshot of saving"](https://github.com/dganai/Scheduler/blob/master/docs/save.png?raw=true)
 
 ## Setup
 
