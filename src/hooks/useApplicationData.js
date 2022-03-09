@@ -30,7 +30,7 @@ export default function useApplicationData() {
   }, []);
 
   // update spots in dayList
-  function updateSpots(appointments, id) {
+  function updateSpots(state, appointments, id) {
     // index of current day in days array
     const dayIndex = state.days.findIndex((day) => day.name === state.day);
     // creating copy of days array
