@@ -11,7 +11,7 @@ export default function useApplicationData() {
   });
 
   // update the day in state
-  const setDay = (day) => setState({ ...state, day });
+  const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
   // axios requests to set state object
   useEffect(() => {
@@ -49,40 +49,55 @@ export default function useApplicationData() {
   }
 
   function bookInterview(id, interview) {
-    // create new appointments object with new interview added
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    // insert new interview into database and update state with new appts object
-    return axios.put(`/api/appointments/${id}`, appointment).then(() => {
-      setState({
-        ...state,
-        appointments,
-        days: updateSpots(true),
+    // check if booking is new or edited
+    const newAppt = state.appointments[id].interview ? true : false;
+
+    // insert new interview into database and update state with new appt obj
+    return axios
+      .put(`/api/appointments/${id}`, { interview: { ...interview } })
+      .then(() => {
+        return setState((prev) => {
+          // create new appointments object with new interview added
+          const appointment = {
+            ...prev.appointments[id],
+            interview: { ...interview },
+          };
+          const appointments = {
+            ...prev.appointments,
+            [id]: appointment,
+          };
+          return {
+            ...prev,
+            appointments,
+
+            // update days in state if new appt is being made
+            days: newAppt ? prev.days : updateSpots(prev, appointments, id),
+          };
+        });
       });
-    });
   }
 
   function cancelInterview(id) {
-    // create new appts object with cancelled interview for selected appt
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then(() => setState({ ...state, appointments, days: updateSpots() }));
+    // insert new interview into db and update state with new appt obj
+    return axios.delete(`/api/appointments/${id}`).then(() =>
+      setState((prev) => {
+        // create new appt obj with interview cancelled
+        const appointment = {
+          ...prev.appointments[id],
+          interview: null,
+        };
+        const appointments = {
+          ...prev.appointments,
+          [id]: appointment,
+        };
+        return {
+          ...prev,
+          appointments,
+          days: updateSpots(prev, appointments, id),
+        };
+      })
+    );
   }
-
   return {
     state,
     setDay,
